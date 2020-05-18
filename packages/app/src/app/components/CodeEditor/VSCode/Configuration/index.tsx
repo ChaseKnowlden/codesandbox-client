@@ -114,47 +114,52 @@ export class ConfigurationComponent extends React.PureComponent<Props>
 
     return (
       <Container style={{ width, height }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <EntryIcons
-            width={32}
-            height={32}
-            type={getType(currentModule.title)}
-          />
-          <Title>{config.title}</Title>
-        </div>
-        <button
-          type="button"
-          style={{
-            outline: 0,
-            border: 0,
-            backgroundColor: 'transparent',
-            color: theme.secondary(),
-            textDecoration: 'underline',
-            margin: 0,
-            padding: 0,
-            marginTop: '1rem',
-            cursor: 'pointer',
-          }}
-          tabIndex={-1}
-          onClick={() => this.props.openText()}
-        >
-          Open file in editor
-        </button>
-        <Description>
-          {config.description}{' '}
-          <a
-            href={config.moreInfoUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            More info...
-          </a>
-        </Description>
+        {!config.noHeader ? (
+          <>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <EntryIcons
+                width={32}
+                height={32}
+                type={getType(currentModule.title)}
+              />
+              <Title>{config.title}</Title>
+            </div>
+            <button
+              type="button"
+              style={{
+                outline: 0,
+                border: 0,
+                backgroundColor: 'transparent',
+                color: theme.secondary(),
+                textDecoration: 'underline',
+                margin: 0,
+                padding: 0,
+                marginTop: '1rem',
+                cursor: 'pointer',
+              }}
+              tabIndex={-1}
+              onClick={() => this.props.openText()}
+            >
+              Open file in editor
+            </button>
+            <Description>
+              {config.description}{' '}
+              <a
+                href={config.moreInfoUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                More info...
+              </a>
+            </Description>
+          </>
+        ) : null}
         <ThemeProvider theme={this.props.theme.vscodeTheme}>
           <ConfigWizard
             sandbox={sandbox}
             updateFile={this.updateFile}
             file={this.props.getCode()}
+            openInText={() => this.props.openText()}
           />
         </ThemeProvider>
       </Container>

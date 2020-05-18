@@ -5,6 +5,7 @@ export type ConfigurationFile = {
   type: string;
   description: string | null;
   moreInfoUrl: string;
+  noHeader?: boolean;
 
   getDefaultCode?: (
     template: string,
@@ -29,4 +30,5 @@ export type ConfigurationUIProps = {
   file: string;
   updateFile: (code: string) => void;
   sandbox: Sandbox;
+  openInText?: () => void;
 };

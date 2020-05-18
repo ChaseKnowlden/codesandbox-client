@@ -93,6 +93,8 @@ export default function parseConfigurations(
         if (module && titleIncludes(module, 'toml')) {
           // never throws
           parsed = toml(code);
+        } else if (module && titleIncludes(module, 'md')) {
+          parsed = { md: code };
         } else {
           parsed = parse(code);
         }

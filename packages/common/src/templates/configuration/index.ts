@@ -10,6 +10,7 @@ import tsconfig from './tsconfig';
 import jsconfig from './jsconfig';
 import babelTranspiler from './babel-transpiler';
 import customCodeSandbox from './custom-codesandbox';
+import readme from './readme';
 
 const configs = {
   babelrc,
@@ -24,6 +25,7 @@ const configs = {
   nowConfig,
   netlifyConfig,
   jsconfig,
+  readme,
 };
 
 export default configs;
