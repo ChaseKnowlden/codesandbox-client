@@ -33,7 +33,7 @@ export const Code = withTheme(({ value, language, theme }) => (
               '*': {
                 wordBreak: 'break-all',
               },
-            })}
+            })()}
           >
             {tokens.map((line, i) => (
               <Element {...getLineProps({ line, key: i })}>

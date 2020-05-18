@@ -14,11 +14,17 @@ const Image = props => (
       maxWidth: '100%',
       borderRadius: 'small',
       maxHeight: '80vh',
-    })}
+    })()}
   />
 );
 
-export const ConfigWizard = ({ file, openInText }) => (
+export const ConfigWizard = ({
+  file,
+  openInText,
+}: {
+  file: any;
+  openInText?: () => void;
+}) => (
   <Element
     css={css({
       fontFamily: 'Inter, sans-serif',
@@ -44,11 +50,11 @@ export const ConfigWizard = ({ file, openInText }) => (
         color: 'mutedForeground',
         paddingRight: '0.5em',
       },
-    })}
+    })()}
   >
     <Button
       onClick={openInText}
-      css={css({ position: 'absolute', width: '30%' })}
+      css={css({ position: 'absolute', width: '30%' })()}
     >
       Open in Text
     </Button>
@@ -58,11 +64,10 @@ export const ConfigWizard = ({ file, openInText }) => (
       renderers={{
         text: ({ children }) => (
           <Text
-            variant="muted"
             size={3}
             css={css({
               wordBreak: 'break-all',
-            })}
+            })()}
           >
             {children}
           </Text>
@@ -71,12 +76,7 @@ export const ConfigWizard = ({ file, openInText }) => (
           const headingLevel = level - 1;
           const sizes = fontSizes.reverse();
           return (
-            <Text
-              block
-              variant="muted"
-              style={{ fontSize: sizes[headingLevel] }}
-              weight="bold"
-            >
+            <Text block style={{ fontSize: sizes[headingLevel] }} weight="bold">
               {children}
             </Text>
           );

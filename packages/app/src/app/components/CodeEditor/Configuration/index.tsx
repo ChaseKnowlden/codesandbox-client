@@ -1,6 +1,8 @@
 import React from 'react';
 import { TextOperation } from 'ot';
 import { Module } from '@codesandbox/common/lib/types';
+import { withTheme } from 'styled-components';
+import { ThemeProvider } from '@codesandbox/components';
 import getUI from '@codesandbox/common/lib/templates/configuration/ui';
 import getType from 'app/utils/get-type';
 import EntryIcons from 'app/pages/Sandbox/Editor/Workspace/Files/DirectoryEntry/Entry/EntryIcons';
@@ -17,7 +19,7 @@ type Props = EditorProps & {
   toggleConfigUI: () => void;
 };
 
-export class Configuration extends React.PureComponent<Props>
+export class ConfigurationComponent extends React.PureComponent<Props>
   implements Editor {
   disposeInitializer?: Function;
 
@@ -116,13 +118,16 @@ export class Configuration extends React.PureComponent<Props>
             More info...
           </a>
         </Description>
-
-        <ConfigWizard
-          sandbox={sandbox}
-          updateFile={this.updateFile}
-          file={currentModule.code}
-        />
+        <ThemeProvider theme={this.props.theme.vscodeTheme}>
+          <ConfigWizard
+            sandbox={sandbox}
+            updateFile={this.updateFile}
+            file={currentModule.code}
+          />
+        </ThemeProvider>
       </Container>
     );
   }
 }
+
+export const Configuration = withTheme(ConfigurationComponent);
